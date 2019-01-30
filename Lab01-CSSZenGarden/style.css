@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Barlow');
+
+html {
+	margin: 30px;
+	padding: 0px;
+	}
+
+body {
+	font-family: 'Barlow', sans-serif;
+	line-height: 1.88889;
+	color: #555753;
+	margin: 0px;
+	padding: 0px;
+	}
+
+h1 {
+	font-family: 'Abel', sans-serif;
+	font-weight: normal;
+	text-transform: uppercase;
+	background: #fa7b80;
+	/*display: inline-grid;*/
+	color: #fff;
+	margin-left: 0px;
+	font-size: 32px;
+	font-style: normal;
+	line-height: 50px;
+	padding: 0em 1em;
+}
+
+h2, h3, h4, h5, h6 {
+	font-family: 'Abel', sans-serif;
+	font-weight: normal;
+	color: #1a1a1a;
+	margin-top: 30px;
+	margin-bottom: 0px;
+	font-size: 32px;
+	font-style: normal;
+	line-height: 42px;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	margin-right: 27%;
+	}
+
+a:link {
+	font-weight: bold;
+	text-decoration: none;
+	color: #eb8283;
+	}
+a:visited {
+	font-weight: bold;
+	text-decoration: none;
+	color: #cac3be;
+	}
+a:hover, a:focus, a:active {
+	text-decoration: underline;
+	color: #ba2b22;
+	}
+/*abbr {*/
+	/*border-bottom: none;*/
+	/*}*/
+
+
+ /*specific divs */
+
+.page-wrapper {
+	padding: 0px 10px 10px 10px;
+	margin: 0;
+	position: relative;
+	}
+
+.intro {
+	min-width: 470px;
+	width: 100%;
+	}
+
+header h1 {
+	margin-top: 0px;
+	display: block;
+	height: 50px;
+	text-align: right;
+	overflow: hidden;
+	}
+header h2 {
+	margin-top: 5%;
+	margin-bottom: 40px;
+	font-size: 50px;
+	float: left;
+	}
+
+header {
+	padding-top: 0px;
+	height: 80px;
+	}
+
+.summary {
+	padding: 2%;
+	padding-bottom: 0px;
+	width: 40%;
+	margin-left: 40%;
+	margin-right: 25%;
+	}
+
+.preamble {
+	clear: right;
+	padding: 0px 10px 0 10px;
+	}
+.supporting {
+	padding-left: 10px;
+	margin-bottom: 40px;
+	}
+
+footer {
+	text-align: center;
+	}
+footer a:link, footer a:visited {
+	margin-right: 20px;
+	}
+
+.sidebar {
+	margin-left: 600px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	}
+.sidebar .wrapper {
+	background: #f9eaea top left repeat-y;
+	padding: 10px;
+	margin-top: 100px;
+	margin-left: 10%;
+	margin-right: 10%;
+	width: 85%;
+	}
+.sidebar h3.select {
+	padding-left: 5%;
+	margin: 10px 0 5px 0;
+	overflow: hidden;
+	}
+.sidebar h3.archives {
+	padding-left: 5%;
+	margin: 10px 0 5px 0;
+	}
+.sidebar h3.resources {
+	padding-left: 5%;
+	margin: 10px 0 5px 0;
+	}
+
+.sidebar ul {
+	margin-left: 0%;
+	}
