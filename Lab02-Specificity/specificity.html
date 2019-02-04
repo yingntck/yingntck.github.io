@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Specificity</title>
+    <!-- Compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>
+        What is
+        <abbr title="Cascading Style Sheets">CSS</abbr>
+        Specificity?
+    </h1>
+</header>
+
+<div class="flex">
+    <div class="flex-padding"> <!-- column 1 -->
+        <p>
+            CSS คือ ตัวที่ช่วยจัดรูปแบบ และการตกแต่งหน้าเว็บของเรา บางคนอาจจะเคยเจอเมื่อใส่ Style นั้นแล้ว
+            แต่ไม่เกิดผลลัพธ์ตามที่หวังไว้ จึงทำการแก้ปัญหาโดยใส่ !importance เข้าไปเพื่อให้มีค่าความสำคัญมากกว่า
+            แต่การทำวิธีนี้ไม่ใช่สิ่งที่ควรจะทำ เพราะต่อไปหากมีการทำขยายต่อไปเป็น project ที่ใหญ่ขึ้นอาจจะทำให้
+            การทำงานมีผลเสียมากกว่าผลดีในการเลือกใช้ style ต่างๆ
+        </p>
+        <br>
+        <div>
+            <h1 class="head-box">
+                การคำนวณค่า CSS Specificity
+            </h1>
+            <p class="body-main body-pink">
+                การสร้าง style ให้กับ element สามารถทำได้หลายแบบ
+                ทั้งการเขียนแบบ inline เช่น style="color:red" เป็นต้น <br>
+                หรือ การเขียนแบบใช้ selector ซึ่งเป็นที่นิยมเขียนกันมากที่สุด<br>
+                ซึ่งการเขียนแบบนี้มีหลายแบบ ซึ่งแต่ละแบบจะมีค่า Specificity <br>
+                ที่แตกต่างกัน และสามารถจัดกลุ่มการเขียน style แต่ละแบบที่มีค่า <br>
+                specificity ที่มีค่าเท่ากันได้ดังนี้ <br>
+                (1) Inline style <br>
+                (2) ID selectors (พวก #)<br>
+                (3) Class selectors, Attributes selectors, Pseudo-classes <br>
+                (4) Type selectors, Pseudo-elements <br>
+                (5) Universal selector, Combinators, Negation pseudo-clas <br>
+            </p>
+        </div>
+    </div>
+
+    <div class="flex-padding"> <!-- column 2 -->
+        <p>
+            CSS Specificity คือ ค่าบางอย่างที่จะบอกเว็บว่าควรเลือกใช้ style ตัวใดมาแสดงผลกับ element ต่างๆ ของเรา
+            โดยดูจากค่าความสำคัญ
+        </p>
+        <div>
+            <br>
+            <h2>โดยมีการกำหนดค่า Specificity ได้ดังนี้</h2>
+            <div>
+                <p class="round">
+                    แบบที่ (1) มีค่า specificity = 1000 <br>
+                    แบบที่ (2) มีค่า specificity = 100 <br>
+                    แบบที่ (3) มีค่า specificity = 10 <br>
+                    แบบที่ (4) มีค่า specificity = 1 <br>
+                    แบบที่ (5) มีค่า specificity = 0 (ไม่มีค่า)
+                </p>
+            </div>
+
+            <div>
+                <h2>ตัวอย่างการคำนวณค่า CSS Specificity <br></h2>
+                <p class="round">
+                    div a {...} = 1+1 = 2 <br>
+                    .box a {...} = 10+1 = 11 <br>
+                    div h1 a apan {...} = 1+1+1+1 = 4 <br>
+                    .page h1 #title {...} = 10+1+100 = 111 <br
+                        #nav .selected> a:hover = 100+10+1+10 = 121 <br>
+                    li:first-child h2 .title = 1+10+1+10 = 22 <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="body-main">
+    <h1 class="head-box">!importance ละ?</h1>
+    <div class="">
+        <p class="body-main body-pink">
+            สำหรับ !importance นั้นหากมีการใช้งานก็จะมีการบังคับใช้ทันที โดยไม่สนใจ
+            specificity อื่นๆ เพราะ !importance เหมือนมีค่า specificity เป็น infinity นั่นเอง
+            ดังนั้นจึงไม่ควรนำมาใช้งานจะดีกว่า
+        </p>
+    </div>
+</div>
+<div class="body-main">
+    <h2 class="head-box center">ตัวอย่างสำหรับการอธิบาย</h2>
+    <div class="flex body-main body-pink">
+        <div class="flex-padding"> <!-- column 1 -->
+            <p class="center">
+                ไฟล์ Home.html ที่มีการเชื่อมโยง style2.css และ style1.css ตามลำดับ
+            </p>
+            <div class="column-2">
+            <span>
+                /* style-2.css */ <br>
+                <br>
+                ul li { <br>
+                display: inline-block; <br>
+                list-style: none; <br>
+                padding: 10px; <br>
+                } <br>
+                <br>
+                ul li.active a { <br>
+                color: gold; <br>
+                } <br>
+                <br>
+                ul li a { <br>
+                text-decoration: none; <br>
+                color: red; <br>
+                } <br>
+                <br>
+                ul li.active { <br>
+                background-color: transparent; <br>
+                } <br>
+                <br>
+                /* style-1.css */ <br>
+                <br>
+                ul li { <br>
+                display: inline-block; <br>
+                list-style: none; <br>
+                padding: 10px; <br>
+                } <br>
+                <br>
+                ul li a { <br>
+                text-decoration : none; <br>
+                color: red; <br>
+                } <br>
+                <br>
+                ul li.active { <br>
+                background-color: green; <br>
+                } <br>
+            </span>
+            </div>
+        </div>
+        <div class="flex-padding"> <!-- column 2 -->
+            <p class="center">
+                ไฟล์ INDEX.html ที่มีการเชื่อมโยง style1.css และ style2.css ตามลำดับ
+            </p>
+            <div class="column-2">
+            <span>
+                /* style-1.css */ <br>
+                <br>
+                ul li { <br>
+                display: inline-block; <br>
+                list-style: none; <br>
+                padding: 10px; <br>
+                } <br>
+                <br>
+                ul li a { <br>
+                text-decoration : none; <br>
+                color: red; <br>
+                } <br>
+                <br>
+                ul li.active { <br>
+                background-color: green; <br>
+                } <br>
+                <br><br><br><br>
+                /* style-2.css */ <br>
+                <br>
+                ul li { <br>
+                display: inline-block; <br>
+                list-style: none; <br>
+                padding: 10px; <br>
+                } <br>
+                <br>
+                ul li.active a { <br>
+                color: gold; <br>
+                } <br>
+                <br>
+                ul li a { <br>
+                text-decoration: none; <br>
+                color: red; <br>
+                } <br>
+                <br>
+                ul li.active { <br>
+                background-color: transparent; <br>
+                } <br>
+            </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="flex">
+    <div class="flex-padding">
+        <div>
+            <h2 class="head-box">
+                การ selector style ที่ชื่อเดียวกัน
+            </h2>
+            <div class="body-main body-pink">
+                <p>
+                    ภาษา CSS มีการอ่านเหมือนกับภาษาอื่นๆ ทั่วไป คือมีการอ่าน code จากบนลงล่าง แต่ browser
+                    จะเอา selector ของอันที่อยู่ล่างสุดมาใช้กับ element
+                </p>
+                <img src="home.png" width="50%" height="50%">
+                <p>
+                    จากภาพจะเห็นได้ว่า browser นำ style ของ style1.css มาใช้ก่อน
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-padding">
+        <div>
+
+            <h2 class="head-box">
+                มี style หลายตัว จะเลือกตัวไหน?
+            </h2>
+            <div class="body-main body-pink">
+                <img src="index.png" width="50%" height="50%">
+                <p>
+                    จากภาพจะเห็นว่า แต่ละ style นั้นจะมีค่า specificity ที่ต่างกัน <br>
+                    (1) มีค่า specificity = 1+1+10+1 = 13 <br>
+                    (2) มีค่า specificity = 1+1+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 3 <br>
+                    (3) มีค่า specificity = 1+1+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 3 <br>
+                    ดังนั้น browser จึงทำการเลือก style ที่มีค่า specificity ที่มีค่ามากที่สุด ก็คือแบบแรกนั่นเอง
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="center">
+    <h1>Reference</h1>
+    <p>
+        <a href="https://medium.com/@thanuphon18">Ai2M Thanu</a> (2017) จาก <a href="https://goo.gl/8Y6Bny">CSS
+        Specificity เรื่องง่ายๆ ที่หลายคนไม่เคยรู้</a>
+        <br><br>
+        Create by Nanthicha Kritveeranant 5810450768
+    </p>
+</footer>
+</body>
+</html>
