@@ -29,7 +29,6 @@ span {
 .round {
     border-radius: 8px;
     margin-right: 30%;
-    border-radius: 8px;
     padding: 2%;
     background: #041626;
     color: white;
@@ -37,7 +36,6 @@ span {
 
 .flex {
     display: flex;
-    /*margin: 1%;*/
     margin-bottom: 0px;
     margin-top: 0px;
 }
@@ -78,7 +76,6 @@ a:visited {
 .head-box {
     position: relative;
     background-color: #df8a89;
-    /*background-image: linear-gradient(#e9e1de, rgba(232, 204, 202, 0.96));*/
     border-radius: 25px 25px 0 0;
     text-align: center;
     padding: 20px;
@@ -92,14 +89,13 @@ a:visited {
 }
 
 .body-pink {
-    /*background-color: #ffba5a;*/
     background-image: linear-gradient(#ebc9c0, rgba(224, 199, 191, 0.25));
 
 }
 
 img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    margin: auto;
+    width: 80%;
+    border-radius: 10px 10px 10px 10px;
 }
