@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="mystyle.css?v=3">
+    <!--<link rel="stylesheet" href="bootstrap.css">-->
+    <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
+    <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
+
+    <title>Contact List</title>
+</head>
+<body>
+
+<header>
+    <h1 class="shadow">C O N T A C T</h1>
+</header>
+
+<div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="search" id="searchBar">
+        <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
+        <input type="checkbox" id="advSearchCheckBox"> Advance Search
+    </div>
+
+    <div class="form-check" id="advCheckBox" style="display: none">
+        <!--<input type="checkbox" name="no" id="checkBoxNo"> No. &nbsp;&nbsp;-->
+        <input type="checkbox" name="name" id="checkBoxName"> Name &nbsp;&nbsp;
+        <input type="checkbox" name="age" id="checkBoxAge"> Age &nbsp;&nbsp;
+        <input type="checkbox" name="gender" id="checkBoxGender"> Gender &nbsp;&nbsp;
+        <input type="checkbox" name="email" id="checkBoxEmail"> E-mail &nbsp;&nbsp;
+        <input type="checkbox" name="address" id="checkBoxAddress"> Address
+        <br>
+        <br>
+    </div>
+
+</div>
+
+<!-- Table -->
+<div class="container">
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Address</th>
+            </tr>
+            </thead>
+            <tbody class="table-light" id="table">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var list_data = [];
+    var status = false;
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "data.json",
+            type: "GET",
+            data: "jsonObj",
+            success: function (data) {
+                for (let i = 0; i < data.length; i++) {
+                    list_data[i] = data[i];
+                    addData(list_data[i])
+                }
+            }
+        });
+
+        //search
+
+        $('#searchBar').on('keypress', function (e) {
+            if (e.which === 13) {
+                $('#table').text('')
+                let val = $(this).val()
+                val = val.toLowerCase()
+                searchData(val)
+            }
+        })
+
+        $('#searchBtn').on('click', function () {
+            $('#table').text('')
+            let val = $('#searchBar').val()
+            val = val.toLowerCase()
+            searchData(val)
+        })
+
+        //advance search
+
+        $('#advSearchCheckBox').on('click', function () {
+            if ($(this).is(':checked')) {
+                status = true
+                $('#advCheckBox').show()
+            } else {
+                status = false
+                $('#advCheckBox input:checked').prop('checked', false)
+                $('#advCheckBox').hide()
+            }
+        })
+    })
+
+    function addData(element) {
+        $('#table').append('<tr>');
+        $('#table').append('<td>' + element.id + '</td>');
+        $('#table').append('<td>' + element.name + '</td>');
+        $('#table').append('<td>' + element.age + '</td>');
+        $('#table').append('<td>' + element.gender + '</td>');
+        $('#table').append('<td>' + element.email + '</td>');
+        $('#table').append('<td>' + element.address + '</td>');
+        $('#table').append('</tr>')
+    }
+
+    function checkVal(input, value, nameVal = "") {
+        let isFound = input.toString().toLowerCase().includes(value)
+        let isChecked = $('#advCheckBox input[name=' + nameVal + ']').is(':checked')
+        let state = Boolean(status) === status;
+        return (isFound && !state) || (isFound && isChecked && state)
+
+    }
+
+    function searchData(value) {
+        $('#table').append('<tr>');
+        if (status === true) {
+            list_data.forEach(element => {
+                if (value === "") {
+                    addData(element);
+                }
+                if (checkVal(element.id, value, 'id')) {
+                    if (element.id === value) {
+                        addData(element)
+                    }
+                }
+            })
+        } else {
+            list_data.forEach(element => {
+                if (value === "") {
+                    addData(element)
+                // } else if (checkVal(element.id, value, 'id')) {
+                //     if (element.id === value) {
+                //         addData(element)
+                //     }
+                } else if (checkVal(element.name, value, 'name')) {
+                    addData(element)
+                } else if (checkVal(element.age, value, 'age')) {
+                    if (element.age === value) {
+                        addData(element)
+                    }
+                } else if (checkVal(element.gender, value, 'gender')) {
+                    if (element.gender === value)
+                        addData(element)
+                } else if (checkVal(element.email, value, 'email')) {
+                    addData(element)
+                } else if (checkVal(element.address, value, 'address')) {
+                    addData(element)
+                }
+            })
+        }
+    }
+</script>
+</body>
+<footer>
+    Collect data from <a href="https://www.json-generator.com/">Json Generator</a><br>
+    Create by Nanthicha Kritveeranant 5810450768
+</footer>
+</html>
